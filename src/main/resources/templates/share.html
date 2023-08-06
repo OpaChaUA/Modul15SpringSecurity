@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Note</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+    .container {
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+
+    .text-danger-center {
+      text-align: center;
+      font-weight: bold;
+      font-size: x-large;
+      color: red;
+      margin-top: 40vh;
+      margin-bottom: 40vh;
+    }
+  </style>
+</head>
+<body>
+<div class="container" th:if="${isPublic}">
+    <h3 th:text="${note.title}"></h3>
+    <p th:text="${note.content}"></p>
+</div>
+<div class="text-danger-center" th:unless="${isPublic}">
+    <p th:text="${message}" class="text-danger"></p>
+</div>
+</body>
+</html>

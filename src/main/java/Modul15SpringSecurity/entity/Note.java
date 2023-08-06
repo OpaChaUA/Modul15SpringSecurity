@@ -10,10 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Note {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     @Column
     private String title;
     @Column
     private String content;
+    @Column
+    private String access;
+
+    @Column(name="user_id")
+    private int userId;
 }

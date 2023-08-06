@@ -4,7 +4,9 @@ import Modul15SpringSecurity.entity.Note;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface NoteRepository extends CrudRepository<Note, Long> {
+import java.util.List;
 
+@Repository
+public interface NoteRepository extends CrudRepository<Note, String> {
+    List<Note>findByUserId(int userId);
 }

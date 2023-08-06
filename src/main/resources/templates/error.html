@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Error</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+        .container {
+            margin-top: 20px;
+        }
+        .error-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .error-messages {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+  <div class="error-content">
+    <h1>Error</h1>
+    <hr/>
+    <div class="alert alert-danger" role="alert">
+      <p>Sorry, your input did not pass the validation. Please check the error messages below:</p>
+      <ul class="error-messages">
+        <li th:each="errorMessage : ${errorMessageList}" th:text="${errorMessage}"></li>
+      </ul>
+    </div>
+    <a th:href="@{${backLink}}" class="btn btn-secondary">Back</a>
+    <a th:href="@{/note/list}" class="btn btn-primary">My Notes</a>
+  </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

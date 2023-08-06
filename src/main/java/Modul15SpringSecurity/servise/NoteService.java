@@ -8,39 +8,33 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class NoteService {
     private final NoteRepository noteRepository;
 
-    public List<Note> allNote() {
-
-        return (List<Note>) noteRepository.findAll();
+    public List<Note> allNote(int id) {
+        return noteRepository.findByUserId(id);
     }
 
-    public Note addNewNote(Note note) {
-
+    public Note addNewNote(Note note, int userId) {
+        note.setUserId(userId);
         return noteRepository.save(note);
     }
 
-    public void deleteById(long id) {
-
-        noteRepository.delete(getById(id));
+    public void deleteById(String id) {
+        getById(id).ifPresent(noteRepository::delete);
     }
 
     public void update(Note note) {
-        getById(note.getId());
         noteRepository.save(note);
     }
 
-
-    public Note getById(long id) {
-        Optional<Note> optionalNote = noteRepository.findById(id);
-        if (optionalNote.isPresent()) {
-            return optionalNote.get();
-        } else {
-            throw new IllegalArgumentException("No note found for id: " + id);
-        }
+    public Optional<Note> getById(String id) {
+        return noteRepository.findById(id);
     }
 
+    public boolean isNoteExist(String id) {
+        return getById(id).isPresent();
+    }
 }
